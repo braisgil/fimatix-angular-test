@@ -9,17 +9,17 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../../environments/environment';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
-// import { StoreModule } from '@ngrx/store';
-// import { reducers } from './store/reducers/weather';
-// import { GetWeatherEffect } from './store/effects/weather';
-// import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './store/reducers/weather';
+import { WeatherEffects } from './store/effects/weather';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    // StoreModule.forRoot({ weather: reducers }),
-    // EffectsModule.forRoot([GetWeatherEffect]),
+    StoreModule.forFeature('weather', reducers),
+    EffectsModule.forRoot([WeatherEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     StoreRouterConnectingModule.forRoot(),
     ReactiveFormsModule

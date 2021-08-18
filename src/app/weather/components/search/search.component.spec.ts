@@ -25,5 +25,18 @@ describe('SearchComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // IMPLEMENT TESTS HERE
+  it('should emit the city value', () => {
+    component.city = 'London'
+    spyOn(component.citySearchOutput, 'emit');
+    component.onFormSubmit()
+    expect(component.citySearchOutput.emit).toHaveBeenCalledWith('London');
+  });
+
+  it('should not emit if citie value is empty', () => {
+    component.city = ''
+    spyOn(component.citySearchOutput, 'emit');
+    component.onFormSubmit()
+    expect(component.citySearchOutput.emit).not.toHaveBeenCalled();
+  }); 
+  
 });
